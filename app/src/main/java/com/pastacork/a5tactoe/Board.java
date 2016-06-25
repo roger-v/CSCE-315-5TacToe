@@ -10,8 +10,6 @@ import java.util.Random;
 
 public class Board extends Activity{
 
-    public int difficulty = 0; //0 = easy, 1 = medium, 2 = hard;
-
     private int [][] state = new int [5][5]; //0 empty, 1 X, 2 O
 
     private boolean playerTurn = false;
@@ -22,10 +20,6 @@ public class Board extends Activity{
 
     public Board(){
 
-    }
-
-    public Board(int difficulty){
-        this.difficulty = difficulty;
     }
 
     @Override
@@ -61,7 +55,10 @@ public class Board extends Activity{
                 ((ImageView) view).setImageResource(R.drawable.o);
                 state[rowIndex][colIndex] = 2;
                 playerTurn = false;
-                dummyAI();
+                if (MainActivity.AIType == 0)
+                    dummyAstar();
+                else
+                    dummyMinimax();
             }
         }
     }
@@ -77,6 +74,7 @@ public class Board extends Activity{
     }
 
     private void makeFirstMove(){
+        int difficulty = MainActivity.difficulty;
         int randomNumber = randInt(0, 3);
         //difficulty = 0 -> 0 for top, 1 for right, 2 for bottom, 3 for left
         //difficulty = 1 -> 0 for top left, 1 for top right, 2 for bottom right, 3 for bottom left
@@ -124,7 +122,20 @@ public class Board extends Activity{
         return randomNum;
     }
 
-    private void dummyAI(){
+    private void dummyAstar(){
+        System.out.println("dummy A star");
+        int rowIndex = randInt(0, 4);
+        int colIndex = randInt(0, 4);
+        while (state[rowIndex][colIndex] != 0){
+            rowIndex = randInt(0, 4);
+            colIndex = randInt(0, 4);
+        }
+        AIMove(rowIndex, colIndex);
+        playerTurn = true;
+    }
+
+    private void dummyMinimax(){
+        System.out.println("dummy Minimax");
         int rowIndex = randInt(0, 4);
         int colIndex = randInt(0, 4);
         while (state[rowIndex][colIndex] != 0){

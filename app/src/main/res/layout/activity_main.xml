@@ -8,7 +8,8 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.pastacork.a5tactoe.MainActivity"
-    android:background="#000000">
+    android:background="#000000"
+    android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen">
 
 
     <LinearLayout
@@ -34,13 +35,12 @@
             android:layout_height="wrap_content"
             android:text="Start Game"
             android:id="@+id/start"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:layout_marginTop="40dp"
             android:layout_below="@+id/menuTitle"
             android:layout_centerHorizontal="true"
             android:onClick="startGame"
             android:textColor="#6b6b6b"
-            android:theme="@android:style/Theme.Black.NoTitleBar.Fullscreen"
             android:layout_gravity="center" />
 
         <TextView
@@ -48,7 +48,7 @@
             android:layout_height="wrap_content"
             android:text="Exit"
             android:id="@+id/exit"
-            android:textSize="30dp"
+            android:textSize="30sp"
             android:layout_marginTop="40dp"
             android:layout_below="@+id/start"
             android:layout_centerHorizontal="true"
@@ -59,8 +59,130 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"></LinearLayout>
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#171717"
+        android:layout_centerInParent="true"
+        android:id="@+id/aiTypeQuery"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose AI Type"
+                    android:id="@+id/aiChoice"
+                    android:textSize="30sp"
+                    android:textColor="#6b6b6b" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="A*"
+                        android:id="@+id/astarChoice"
+                        android:layout_margin="10dp"
+                        android:textSize="30sp"
+                        android:textColor="#00a693"
+                        android:onClick="setAIType" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Minimax"
+                        android:id="@+id/minimaxChoice"
+                        android:layout_margin="10dp"
+                        android:textSize="30sp"
+                        android:textColor="#628c00"
+                        android:onClick="setAIType" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#171717"
+        android:layout_centerInParent="true"
+        android:id="@+id/difficultyQuery"
+        android:visibility="invisible">
+
+        <RelativeLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_margin="30dp">
+
+            <LinearLayout
+                android:orientation="vertical"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Choose Difficulty"
+                    android:id="@+id/difficultyChoice"
+                    android:textSize="30sp"
+                    android:textColor="#6b6b6b"
+                    android:layout_gravity="center_horizontal" />
+
+                <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Easy"
+                        android:id="@+id/easyChoice"
+                        android:layout_margin="5dp"
+                        android:textSize="30sp"
+                        android:textColor="#00a600"
+                        android:onClick="setDifficulty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Medium"
+                        android:id="@+id/mediumChoice"
+                        android:layout_margin="5dp"
+                        android:textSize="30sp"
+                        android:textColor="#8c7e00"
+                        android:onClick="setDifficulty" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Hard"
+                        android:id="@+id/hardChoice"
+                        android:layout_margin="5dp"
+                        android:textSize="30sp"
+                        android:textColor="#cd2200"
+                        android:onClick="setDifficulty" />
+                </LinearLayout>
+            </LinearLayout>
+        </RelativeLayout>
+
+    </LinearLayout>
 
 
 </RelativeLayout>
