@@ -36,7 +36,6 @@ public class Board extends Activity{
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        System.out.println("activity started");
         setContentView(R.layout.board);
         grid = (GridLayout) findViewById(R.id.grid);
         makeFirstMove();
@@ -44,7 +43,6 @@ public class Board extends Activity{
 
     public void resetGame(View view){
         if (gameIsActive) {
-            System.out.println("resetting now");
             state = new int[5][5];
             for (int i = 0; i < 25; i++) {
                 ((ImageView) grid.getChildAt(i)).setImageDrawable(null);
@@ -72,7 +70,6 @@ public class Board extends Activity{
         if (state[rowIndex][colIndex] == 0) {
             ImageView img = (ImageView) grid.getChildAt(rowIndex * 5 + colIndex);
             img.setImageResource(R.drawable.x);
-            System.out.println("AI made move at " + rowIndex + ", " + colIndex);
             state[rowIndex][colIndex] = 1;
             return;
         }
