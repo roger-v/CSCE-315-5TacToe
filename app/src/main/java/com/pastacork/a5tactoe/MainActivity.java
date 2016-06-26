@@ -62,4 +62,13 @@ public class MainActivity extends AppCompatActivity {
             moveTaskToBack(true);
         }
     }
+
+    @Override
+    public void onBackPressed(){
+        if (findViewById(R.id.aiTypeQuery).getVisibility() == View.VISIBLE || findViewById(R.id.difficultyQuery).getVisibility() == View.VISIBLE){
+            findViewById(R.id.aiTypeQuery).setVisibility(View.INVISIBLE);
+            findViewById(R.id.difficultyQuery).setVisibility(View.INVISIBLE);
+        }
+        else super.onBackPressed();
+    }
 }

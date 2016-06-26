@@ -3,7 +3,6 @@ package com.pastacork.a5tactoe;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
@@ -25,7 +24,7 @@ public class Board extends Activity{
 
     @Override
     public void onBackPressed() {
-        moveTaskToBack(true);
+        finish();
     }
 
     @Override
@@ -112,43 +111,12 @@ public class Board extends Activity{
     private void makeFirstMove(){
         int difficulty = MainActivity.difficulty;
         int randomNumber = randInt(0, 3);
-        //difficulty = 0 -> 0 for top, 1 for right, 2 for bottom, 3 for left
-        //difficulty = 1 -> 0 for top left, 1 for top right, 2 for bottom right, 3 for bottom left
-        if (difficulty == 0){
-            switch (randomNumber){
-                case 0:
-                    AIMove(0, randInt(1, 3));
-                    break;
-                case 1:
-                    AIMove(randInt(1, 3), 4);
-                    break;
-                case 2:
-                    AIMove(4, randInt(1, 3));
-                    break;
-                case 3:
-                    AIMove(randInt(1, 3), 0);
-                    break;
-            }
-        }
-        else if (difficulty == 1){
-            switch (randomNumber){
-                case 0:
-                    AIMove(0,0);
-                    break;
-                case 1:
-                    AIMove(0,4);
-                    break;
-                case 2:
-                    AIMove(4,4);
-                    break;
-                case 3:
-                    AIMove(4,0);
-                    break;
-            }
-        }
-        else {
+        if (difficulty == 0)
+            randomSide(randomNumber);
+        else if (difficulty == 1)
+            randomCorner(randomNumber);
+        else
             AIMove(2, 2);
-        }
         playerTurn = true;
     }
 
@@ -180,6 +148,40 @@ public class Board extends Activity{
         }
         AIMove(rowIndex, colIndex);
         playerTurn = true;
+    }
+
+    private void randomSide(int randomNumber){
+        switch (randomNumber){
+            case 0:
+                AIMove(0, randInt(1, 3));
+                break;
+            case 1:
+                AIMove(randInt(1, 3), 4);
+                break;
+            case 2:
+                AIMove(4, randInt(1, 3));
+                break;
+            case 3:
+                AIMove(randInt(1, 3), 0);
+                break;
+        }
+    }
+
+    private void randomCorner(int randomNumber){
+        switch (randomNumber){
+            case 0:
+                AIMove(0,0);
+                break;
+            case 1:
+                AIMove(0,4);
+                break;
+            case 2:
+                AIMove(4,4);
+                break;
+            case 3:
+                AIMove(4,0);
+                break;
+        }
     }
 
 }
