@@ -34,7 +34,6 @@
                 android:text="RESET"
                 android:id="@+id/reset"
                 android:layout_gravity="center_horizontal"
-                android:onClick="resetGame"
                 android:layout_marginTop="10dp"
                 android:textSize="25sp" />
 
@@ -44,7 +43,6 @@
                 android:text="MENU"
                 android:id="@+id/menuButton"
                 android:layout_gravity="center_horizontal"
-                android:onClick="showExitPrompt"
                 android:layout_marginTop="10dp"
                 android:textSize="25sp" />
         </LinearLayout>
@@ -68,7 +66,6 @@
                 android:id="@+id/b00"
                 android:layout_row="0"
                 android:layout_column="0"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -77,7 +74,6 @@
                 android:id="@+id/b01"
                 android:layout_row="0"
                 android:layout_column="1"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -86,7 +82,6 @@
                 android:id="@+id/b02"
                 android:layout_row="0"
                 android:layout_column="2"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -95,7 +90,6 @@
                 android:id="@+id/b03"
                 android:layout_row="0"
                 android:layout_column="3"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -104,7 +98,6 @@
                 android:id="@+id/b04"
                 android:layout_row="0"
                 android:layout_column="4"
-                android:onClick="playerMove"
                 android:background="#232323" />
 
             <ImageView
@@ -114,7 +107,6 @@
                 android:id="@+id/b10"
                 android:layout_row="1"
                 android:layout_column="0"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -123,7 +115,6 @@
                 android:id="@+id/b11"
                 android:layout_row="1"
                 android:layout_column="1"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -132,7 +123,6 @@
                 android:id="@+id/b12"
                 android:layout_row="1"
                 android:layout_column="2"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -141,7 +131,6 @@
                 android:id="@+id/b13"
                 android:layout_row="1"
                 android:layout_column="3"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -150,7 +139,6 @@
                 android:id="@+id/b14"
                 android:layout_row="1"
                 android:layout_column="4"
-                android:onClick="playerMove"
                 android:background="#000000" />
 
             <ImageView
@@ -160,7 +148,6 @@
                 android:id="@+id/b20"
                 android:layout_row="2"
                 android:layout_column="0"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -169,7 +156,6 @@
                 android:id="@+id/b21"
                 android:layout_row="2"
                 android:layout_column="1"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -178,7 +164,6 @@
                 android:id="@+id/b22"
                 android:layout_row="2"
                 android:layout_column="2"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -187,7 +172,6 @@
                 android:id="@+id/b23"
                 android:layout_row="2"
                 android:layout_column="3"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -196,7 +180,6 @@
                 android:id="@+id/b24"
                 android:layout_row="2"
                 android:layout_column="4"
-                android:onClick="playerMove"
                 android:background="#232323" />
 
             <ImageView
@@ -206,7 +189,6 @@
                 android:id="@+id/b30"
                 android:layout_row="3"
                 android:layout_column="0"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -215,7 +197,6 @@
                 android:id="@+id/b31"
                 android:layout_row="3"
                 android:layout_column="1"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -224,7 +205,6 @@
                 android:id="@+id/b32"
                 android:layout_row="3"
                 android:layout_column="2"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -233,7 +213,6 @@
                 android:id="@+id/b33"
                 android:layout_row="3"
                 android:layout_column="3"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -242,7 +221,6 @@
                 android:id="@+id/b34"
                 android:layout_row="3"
                 android:layout_column="4"
-                android:onClick="playerMove"
                 android:background="#000000" />
 
             <ImageView
@@ -252,7 +230,6 @@
                 android:id="@+id/b40"
                 android:layout_row="4"
                 android:layout_column="0"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -261,7 +238,6 @@
                 android:id="@+id/b41"
                 android:layout_row="4"
                 android:layout_column="1"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -270,7 +246,6 @@
                 android:id="@+id/b42"
                 android:layout_row="4"
                 android:layout_column="2"
-                android:onClick="playerMove"
                 android:background="#232323" />
             <ImageView
                 android:padding="5dp"
@@ -279,7 +254,6 @@
                 android:id="@+id/b43"
                 android:layout_row="4"
                 android:layout_column="3"
-                android:onClick="playerMove"
                 android:background="#000000" />
             <ImageView
                 android:padding="5dp"
@@ -288,7 +262,6 @@
                 android:id="@+id/b44"
                 android:layout_row="4"
                 android:layout_column="4"
-                android:onClick="playerMove"
                 android:background="#232323" />
 
 
@@ -331,7 +304,6 @@
                 android:layout_height="70dp"
                 android:text="I AM"
                 android:id="@+id/menuYesButton"
-                android:onClick="menuQueryButtons"
                 android:textSize="20sp"
                 android:layout_margin="10dp" />
 
@@ -340,7 +312,6 @@
                 android:layout_height="70dp"
                 android:text="NOPE"
                 android:id="@+id/menuNoButton"
-                android:onClick="menuQueryButtons"
                 android:textSize="20sp"
                 android:layout_margin="10dp" />
         </LinearLayout>

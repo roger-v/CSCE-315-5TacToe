@@ -3,6 +3,7 @@ package com.pastacork.a5tactoe;
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 
@@ -33,34 +34,69 @@ public class Board extends Activity{
         setContentView(R.layout.board);
         grid = (GridLayout) findViewById(R.id.grid);
         makeFirstMove();
-    }
 
-    public void resetGame(View view){
-        if (gameIsActive) {
-            state = new int[5][5];
-            for (int i = 0; i < 25; i++) {
-                ((ImageView) grid.getChildAt(i)).setImageDrawable(null);
-            }
-            makeFirstMove();
+        for (int i = 0; i < 25; i++){
+            grid.getChildAt(i).setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if (gameIsActive) {
+                        String name = getResources().getResourceEntryName(view.getId());
+                        int rowIndex = Character.getNumericValue(name.charAt(1));
+                        int colIndex = Character.getNumericValue(name.charAt(2));
+                        System.out.println(rowIndex + ", " + colIndex);
+                        if (playerTurn && state[rowIndex][colIndex] == 0) {
+                            ((ImageView) view).setImageResource(R.drawable.o);
+                            state[rowIndex][colIndex] = 2;
+                            playerTurn = false;
+                            if (MainActivity.AIType == 0)
+                                dummyAstar();
+                            else
+                                dummyMinimax();
+                        }
+                    }
+                }
+            });
         }
-    }
 
-    public void playerMove(View view){
-        if (gameIsActive) {
-            String name = getResources().getResourceEntryName(view.getId());
-            int rowIndex = Character.getNumericValue(name.charAt(1));
-            int colIndex = Character.getNumericValue(name.charAt(2));
-            System.out.println(rowIndex + ", " + colIndex);
-            if (playerTurn && state[rowIndex][colIndex] == 0) {
-                ((ImageView) view).setImageResource(R.drawable.o);
-                state[rowIndex][colIndex] = 2;
-                playerTurn = false;
-                if (MainActivity.AIType == 0)
-                    dummyAstar();
-                else
-                    dummyMinimax();
+        findViewById(R.id.reset).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (gameIsActive) {
+                    state = new int[5][5];
+                    for (int i = 0; i < 25; i++) {
+                        ((ImageView) grid.getChildAt(i)).setImageDrawable(null);
+                    }
+                    makeFirstMove();
+                }
             }
-        }
+        });
+
+        findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (gameIsActive) {
+                    View exitToMenu = findViewById(R.id.menuQuery);
+                    exitToMenu.setVisibility(View.VISIBLE);
+                    gameIsActive = false;
+                }
+            }
+        });
+
+        findViewById(R.id.menuYesButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
+
+        findViewById(R.id.menuNoButton).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                View exitToMenu = findViewById(R.id.menuQuery);
+                exitToMenu.setVisibility(View.INVISIBLE);
+                gameIsActive = true;
+            }
+        });
     }
 
     private void AIMove(int rowIndex, int colIndex){
@@ -144,25 +180,6 @@ public class Board extends Activity{
         }
         AIMove(rowIndex, colIndex);
         playerTurn = true;
-    }
-
-    public void showExitPrompt(View view){
-        if (gameIsActive) {
-            View exitToMenu = findViewById(R.id.menuQuery);
-            exitToMenu.setVisibility(View.VISIBLE);
-            gameIsActive = false;
-        }
-    }
-
-    public void menuQueryButtons(View view){
-        if (view.getId() == R.id.menuYesButton){
-            finish();
-        }
-        else if (view.getId() == R.id.menuNoButton){
-            View exitToMenu = findViewById(R.id.menuQuery);
-            exitToMenu.setVisibility(View.INVISIBLE);
-            gameIsActive = true;
-        }
     }
 
 }
