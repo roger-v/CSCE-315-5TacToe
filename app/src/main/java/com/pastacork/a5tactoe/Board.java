@@ -43,7 +43,7 @@ public class Board extends Activity{
         setUpBoardListeners();
         setUpResetListener();
         setUpMenuListeners();
-        System.out.println("JNI FUNCTION testFunc() -> " + testFunc());
+        System.out.println("JNI FUNCTION - testFunc() -> " + testFunc());
     }
 
     private void setUpBoardListeners(){
