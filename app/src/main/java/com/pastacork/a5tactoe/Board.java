@@ -5,10 +5,17 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.util.Random;
 
 public class Board extends Activity{
+
+    public native String testFunc();
+
+    static {
+        System.loadLibrary("interface");
+    }
 
     private int [][] state = new int [5][5]; //0 empty, 1 X, 2 O
 
@@ -33,7 +40,13 @@ public class Board extends Activity{
         setContentView(R.layout.board);
         grid = (GridLayout) findViewById(R.id.grid);
         makeFirstMove();
+        setUpBoardListeners();
+        setUpResetListener();
+        setUpMenuListeners();
+        System.out.println("JNI FUNCTION testFunc() -> " + testFunc());
+    }
 
+    private void setUpBoardListeners(){
         for (int i = 0; i < 25; i++){
             grid.getChildAt(i).setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -56,7 +69,9 @@ public class Board extends Activity{
                 }
             });
         }
+    }
 
+    private void setUpResetListener(){
         findViewById(R.id.reset).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -69,7 +84,9 @@ public class Board extends Activity{
                 }
             }
         });
+    }
 
+    private void setUpMenuListeners(){
         findViewById(R.id.menuButton).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
