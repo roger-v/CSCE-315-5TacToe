@@ -71,7 +71,7 @@ void v1_recurse(BOARD& board, MOVE_LIST& moves, int player,int depth);
 
 AiMove AiPlayerMove(BOARD& board, int player, int depth);
 
-void performMove(BOARD& board);
+vector<int> performMove(BOARD& board);
 
 JNIEXPORT jstring JNICALL testCPPFunc(JNIEnv* env, jobject thiz);
 /*

@@ -11,7 +11,18 @@ import java.util.Random;
 
 public class Board extends Activity{
 
-    public native String testFunc(int [][] state);
+    public native int [] testFunc(int [][] state);
+    public native int [] minimax(int [][] state);
+    public void printState(){
+        String c = "";
+        for (int i = 0; i < 5; i++){
+            if (i > 0) c+=',';
+            for (int j = 0; j < 5; j++){
+                c += Integer.toString(state[i][j]);
+            }
+        }
+        System.out.println("Current board: " + c);
+    }
 
     static {
         System.loadLibrary("interface");
@@ -54,16 +65,20 @@ public class Board extends Activity{
                         String name = getResources().getResourceEntryName(view.getId());
                         int rowIndex = Character.getNumericValue(name.charAt(1));
                         int colIndex = Character.getNumericValue(name.charAt(2));
-                        System.out.println(rowIndex + ", " + colIndex);
                         if (playerTurn && state[rowIndex][colIndex] == 0) {
+                            System.out.println("Player making move at " + rowIndex + ", " + colIndex);
                             ((ImageView) view).setImageResource(R.drawable.o);
                             state[rowIndex][colIndex] = 2;
                             playerTurn = false;
-                            System.out.println("JNI FUNCTION testFunc() -> " + testFunc(state));
+                            int moves[] = minimax(state);
+                            System.out.println("moves: " + moves[0] + ", " + moves[1]);
+                            AIMove(moves[0], moves[1]);
+                            /*
                             if (MainActivity.AIType == 0)
                                 dummyAstar();
                             else
                                 dummyMinimax();
+                                */
                         }
                     }
                 }
@@ -81,6 +96,7 @@ public class Board extends Activity{
                         ((ImageView) grid.getChildAt(i)).setImageDrawable(null);
                     }
                     makeFirstMove();
+                    printState();
                 }
             }
         });
@@ -120,10 +136,11 @@ public class Board extends Activity{
             ImageView img = (ImageView) grid.getChildAt(rowIndex * 5 + colIndex);
             img.setImageResource(R.drawable.x);
             state[rowIndex][colIndex] = 1;
-            System.out.println("JNI FUNCTION testFunc() -> " + testFunc(state));
+            playerTurn = true;
             return;
         }
         System.out.println("AI failed to make move at " + rowIndex + ", " + colIndex);
+        printState();
     }
 
     private void makeFirstMove(){
@@ -136,7 +153,6 @@ public class Board extends Activity{
         else
             AIMove(2, 2);
         playerTurn = true;
-        System.out.println("JNI FUNCTION testFunc() -> " + testFunc(state));
     }
 
     private int randInt(int min, int max){
@@ -154,7 +170,6 @@ public class Board extends Activity{
             colIndex = randInt(0, 4);
         }
         AIMove(rowIndex, colIndex);
-        playerTurn = true;
     }
 
     private void dummyMinimax(){
@@ -166,7 +181,6 @@ public class Board extends Activity{
             colIndex = randInt(0, 4);
         }
         AIMove(rowIndex, colIndex);
-        playerTurn = true;
     }
 
     private void randomSide(int randomNumber){

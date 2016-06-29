@@ -240,26 +240,30 @@ AiMove AiPlayerMove(BOARD& board, int player, int depth){
 	return bMove;
 }
 
-void performMove(BOARD& board){
+vector<int> performMove(BOARD& board){
 	timer.start();
-	printf("AI thinking...\n");
+	//printf("AI thinking...\n");
 	maxTracker.score = -1000000;
 	minTracker.score = 1000000;
 	AiMove bestmove = AiPlayerMove(board, 1, 0);//0 is depth
-	cout<<"AI Played: "<<bestmove.x<<", "<<bestmove.y<<endl;
-	printf("score: %d\n", bestmove.score);
+	//cout<<"AI Played: "<<bestmove.x<<", "<<bestmove.y<<endl;
+	//printf("score: %d\n", bestmove.score);
 	int check = checkVictory(board);
 	if(check == 1 || check == 2 || check == -1){
-		printf("PLAYER %d WON! \n",check);
+		//printf("PLAYER %d WON! \n",check);
 	}
 	else{
 		board.boardM[bestmove.x][bestmove.y] = _aiPlayer;
 	}
 	timer.stop();
 	int crtime = timer.getTime();
-	printf("Time: %d\n",crtime);
+	//printf("Time: %d\n",crtime);
 	timer.reset();
 	//print_board(board.boardM);
+	vector<int> v;
+	v.push_back(bestmove.x);
+	v.push_back(bestmove.y);
+	return v;
 }
 
 JNIEXPORT jstring JNICALL testCPPFunc(JNIEnv* env, jobject thiz){
