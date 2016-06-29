@@ -1,11 +1,4 @@
-#include <vector>
-#include <ctime>
-#include <cmath>
 #include "minmax_ai.h"
-#include <iostream>
-#include <iomanip>
-#include "timer.h"
-#include <stdlib.h>
 
 using namespace std;
 
@@ -119,6 +112,72 @@ bool loopAction(BOARD& board, int player ,MOVE_LIST& moves, int x, int y, int de
 		return cont;
 }
 
+int checkVictory(BOARD board) {//[3]--modifed from original source
+    bool victory;
+    int c;
+    // Check the rows
+    for (int y = 0; y < 5; y++) {
+        c = board.boardM[0][y];//getVal(0, y);
+        if (c != NO_VAL) {
+            victory = true;
+            for (int x = 0; x < 5; x++) {
+                if (board.boardM[x][y] != c) {
+                    victory = false;
+                    break;
+                }
+            }
+            if (victory) return c;
+        }
+    }
+    // Check the columns
+    for (int x = 0; x < 5; x++) {
+        c = board.boardM[x][0];//getVal(x, 0);
+        if (c != NO_VAL) {
+            victory = true;
+            for (int y = 0; y < 5; y++) {
+                if (board.boardM[x][y] != c) {
+                    victory = false;
+                    break;
+                }
+            }
+            if (victory) return c;
+        }
+    }
+    // Check top left diagonal
+    c =board.boardM[0][0];// getVal(0, 0);
+    if (c != NO_VAL) {
+        victory = true;
+        for (int xy = 0; xy < 5; xy++) {
+            if (board.boardM[xy][xy] != c) {
+                victory = false;
+                break;
+            }
+        }
+        if (victory) return c;
+    }
+    // Check top right diagonal
+    c = board.boardM[5-1][0];
+    if (c != NO_VAL) {
+        victory = true;
+        for (int xy = 0; xy < 5; xy++) {
+            if (board.boardM[5 - xy - 1][xy] != c) {
+                victory = false;
+                break;
+            }
+        }
+        if (victory) return c;
+    }
+    // Check for tie game
+    for (int i = 0; i < 5; i++) {
+    	for(int z = 0; z <5; z++){
+    		if (board.boardM[i][z] == NO_VAL) return NO_VAL;
+    	}
+    }
+    // If we get here, every spot was filled, so return tie
+    return TIE_VAL;
+}
+
+
 //------------------------------KEEP THIS--------------------------------------
 void v0_recurse(BOARD& board, MOVE_LIST& moves, int player,int depth){
 	for (int y =0; y < gridSize; y++){
@@ -181,7 +240,7 @@ AiMove AiPlayerMove(BOARD& board, int player, int depth){
 	return bMove;
 }
 
-vector<int> performMove(BOARD& board){
+void performMove(BOARD& board){
 	timer.start();
 	printf("AI thinking...\n");
 	maxTracker.score = -1000000;
@@ -200,8 +259,12 @@ vector<int> performMove(BOARD& board){
 	int crtime = timer.getTime();
 	printf("Time: %d\n",crtime);
 	timer.reset();
-	vector<int> v;
-	v.push_back(bestmove.x);
-	v.push_back(bestmove.y);
-	return v;
+	//print_board(board.boardM);
+}
+
+JNIEXPORT jstring JNICALL testCPPFunc(JNIEnv* env, jobject thiz){
+    char a = '0' + 9;
+    char b = '0' + 5;
+    char c[] = {a, b};
+    return (env)->NewStringUTF(c);
 }

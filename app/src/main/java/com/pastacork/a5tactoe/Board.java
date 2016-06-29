@@ -11,7 +11,7 @@ import java.util.Random;
 
 public class Board extends Activity{
 
-    public native String testFunc();
+    public native String testFunc(int [][] state);
 
     static {
         System.loadLibrary("interface");
@@ -43,7 +43,6 @@ public class Board extends Activity{
         setUpBoardListeners();
         setUpResetListener();
         setUpMenuListeners();
-        System.out.println("JNI FUNCTION testFunc() -> " + testFunc());
     }
 
     private void setUpBoardListeners(){
@@ -60,6 +59,7 @@ public class Board extends Activity{
                             ((ImageView) view).setImageResource(R.drawable.o);
                             state[rowIndex][colIndex] = 2;
                             playerTurn = false;
+                            System.out.println("JNI FUNCTION testFunc() -> " + testFunc(state));
                             if (MainActivity.AIType == 0)
                                 dummyAstar();
                             else
@@ -120,6 +120,7 @@ public class Board extends Activity{
             ImageView img = (ImageView) grid.getChildAt(rowIndex * 5 + colIndex);
             img.setImageResource(R.drawable.x);
             state[rowIndex][colIndex] = 1;
+            System.out.println("JNI FUNCTION testFunc() -> " + testFunc(state));
             return;
         }
         System.out.println("AI failed to make move at " + rowIndex + ", " + colIndex);
@@ -135,6 +136,7 @@ public class Board extends Activity{
         else
             AIMove(2, 2);
         playerTurn = true;
+        System.out.println("JNI FUNCTION testFunc() -> " + testFunc(state));
     }
 
     private int randInt(int min, int max){

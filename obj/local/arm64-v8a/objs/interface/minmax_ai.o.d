@@ -1,5 +1,6 @@
 obj/local/arm64-v8a/objs/interface/minmax_ai.o: jni/minmax_ai.cpp \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/vector \
+ jni/minmax_ai.h \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/cstdlib \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_prolog.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cprolog.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/config/features.h \
@@ -13,18 +14,18 @@ obj/local/arm64-v8a/objs/interface/minmax_ai.o: jni/minmax_ai.cpp \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/config/stl_confix.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/config/_native_headers.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/debug/_debug.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_algobase.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstddef.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stddef.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstring.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/string.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/using/cstring \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/climits \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/limits.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstdlib.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stdlib.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cmath.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/math.h \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_epilog.h \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/vector \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_algobase.h \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstddef.h \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstring.h \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/using/cstring \
+ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/climits \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_pair.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/type_traits.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/type_manips.h \
@@ -52,14 +53,10 @@ obj/local/arm64-v8a/objs/interface/minmax_ai.o: jni/minmax_ai.cpp \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_range_errors.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_bvector.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_relops_cont.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_epilog.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/ctime \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_ctime.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/time.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/cmath \
- jni/minmax_ai.h \
- C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/cstdlib \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/iostream \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_ioserr.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_iosfwd.h \
@@ -109,7 +106,9 @@ obj/local/arm64-v8a/objs/interface/minmax_ai.o: jni/minmax_ai.cpp \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_iomanip.h \
  jni/timer.h
 
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/vector:
+jni/minmax_ai.h:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/cstdlib:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_prolog.h:
 
@@ -137,22 +136,6 @@ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-st
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/debug/_debug.h:
 
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_algobase.h:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstddef.h:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stddef.h:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstring.h:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/string.h:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/using/cstring:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/climits:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/limits.h:
-
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstdlib.h:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stdlib.h:
@@ -160,6 +143,22 @@ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-st
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cmath.h:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/math.h:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_epilog.h:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/vector:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_algobase.h:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstddef.h:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_cstring.h:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/using/cstring:
+
+C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/climits:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_pair.h:
 
@@ -215,10 +214,6 @@ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-st
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_relops_cont.h:
 
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_epilog.h:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_config_compat_post.h:
-
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/ctime:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_ctime.h:
@@ -226,10 +221,6 @@ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-st
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/time.h:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/cmath:
-
-jni/minmax_ai.h:
-
-C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/cstdlib:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/iostream:
 

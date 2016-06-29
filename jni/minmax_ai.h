@@ -3,7 +3,13 @@
 //
 #include <cstdlib>
 #include <vector>
+#include <ctime>
+#include <cmath>
 #include <iostream>
+#include <iomanip>
+#include "timer.h"
+#include <stdlib.h>
+#include <jni.h>
 #ifndef INC_5TACTOE_MINMAX_AI_H
 #define INC_5TACTOE_MINMAX_AI_H
 
@@ -47,76 +53,27 @@ struct MOVE_LIST{
 	vector<AiMove> list;
 };
 
-AiMove checkBestMove(vector<AiMove> moves, int Ai_or_user);
+bool pruneBestMove(AiMove newAiMove);
+
+bool pruneWorstMove(AiMove newAiMove);
+
+AiMove pruning(int player, AiMove move);
+
+AiMove checkBestMovePrune();
+
+bool loopAction();
+
+int checkVictory(BOARD board);
+
+void v0_recurse(BOARD& board, MOVE_LIST& moves, int player,int depth);
+
+void v1_recurse(BOARD& board, MOVE_LIST& moves, int player,int depth);
 
 AiMove AiPlayerMove(BOARD& board, int player, int depth);
-void loopAction();
 
-int checkVictory(BOARD board) {//[3]--modifed from original source
-    bool victory;
-    int c;
-    // Check the rows
-    for (int y = 0; y < 5; y++) {
-        c = board.boardM[0][y];//getVal(0, y);
-        if (c != NO_VAL) {
-            victory = true;
-            for (int x = 0; x < 5; x++) {
-                if (board.boardM[x][y] != c) {
-                    victory = false;
-                    break;
-                }
-            }
-            if (victory) return c;
-        }
-    }
-    // Check the columns
-    for (int x = 0; x < 5; x++) {
-        c = board.boardM[x][0];//getVal(x, 0);
-        if (c != NO_VAL) {
-            victory = true;
-            for (int y = 0; y < 5; y++) {
-                if (board.boardM[x][y] != c) {
-                    victory = false;
-                    break;
-                }
-            }
-            if (victory) return c;
-        }
-    }
-    // Check top left diagonal
-    c =board.boardM[0][0];// getVal(0, 0);
-    if (c != NO_VAL) {
-        victory = true;
-        for (int xy = 0; xy < 5; xy++) {
-            if (board.boardM[xy][xy] != c) {
-                victory = false;
-                break;
-            }
-        }
-        if (victory) return c;
-    }
-    // Check top right diagonal
-    c = board.boardM[5-1][0];
-    if (c != NO_VAL) {
-        victory = true;
-        for (int xy = 0; xy < 5; xy++) {
-            if (board.boardM[5 - xy - 1][xy] != c) {
-                victory = false;
-                break;
-            }
-        }
-        if (victory) return c;
-    }
-    // Check for tie game
-    for (int i = 0; i < 5; i++) {
-    	for(int z = 0; z <5; z++){
-    		if (board.boardM[i][z] == NO_VAL) return NO_VAL;
-    	}
-    }
-    // If we get here, every spot was filled, so return tie
-    return TIE_VAL;
-}
+void performMove(BOARD& board);
 
+JNIEXPORT jstring JNICALL testCPPFunc(JNIEnv* env, jobject thiz);
 /*
 [1]- http://stackoverflow.com/questions/20287095/checking-if-all-elements-of-a-vector-are-equal-in-c
 [2]- http://stackoverflow.com/questions/15531258/test-if-all-elements-of-a-vector-are-equal
