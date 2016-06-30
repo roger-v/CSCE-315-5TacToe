@@ -71,6 +71,7 @@ public class Board extends Activity{
                             state[rowIndex][colIndex] = 2;
                             playerTurn = false;
                             int moves[] = minimax(state);
+
                             if (moves[0] == -1 && moves[1] == -1){
                                 System.out.println("AI WON!");
                                 resetGame();
