@@ -2,7 +2,9 @@ package com.pastacork.a5tactoe;
 
 import android.app.Activity;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
+import android.widget.Button;
 import android.widget.GridLayout;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -13,6 +15,7 @@ public class Board extends Activity{
 
     public native int [] testFunc(int [][] state);
     public native int [] minimax(int [][] state);
+    public native int [] astar(int [][] state);
     public void printState(){
         String c = "";
         for (int i = 0; i < 5; i++){
@@ -29,6 +32,12 @@ public class Board extends Activity{
     }
 
     private int [][] state = new int [5][5]; //0 empty, 1 X, 2 O
+
+    private final int X = 1;
+    private final int O = 2;
+    private final int TIE = 0;
+
+    private static int slots_occupied = 0;
 
     private boolean playerTurn = false;
 
@@ -54,6 +63,26 @@ public class Board extends Activity{
         setUpBoardListeners();
         setUpResetListener();
         setUpMenuListeners();
+        setUpGameOverListener();
+    }
+
+    private boolean boardIsFull(){
+        return slots_occupied == 25;
+    }
+
+    private int [] lastSlot(){
+        if (slots_occupied == 24) {
+            for (int i = 0; i < 5; i++) {
+                for (int j = 0; j < 5; j++){
+                    if (state[i][j] == 0){
+                        int ret[] = {i, j};
+                        return ret;
+                    }
+                }
+            }
+        }
+        int ret[] = {-1, -1};
+        return ret;
     }
 
     private void setUpBoardListeners(){
@@ -70,36 +99,73 @@ public class Board extends Activity{
                             ((ImageView) view).setImageResource(R.drawable.o);
                             state[rowIndex][colIndex] = 2;
                             playerTurn = false;
-                            int moves[] = minimax(state);
-
-                            if (moves[0] == -1 && moves[1] == -1){
-                                System.out.println("AI WON!");
+                            slots_occupied++;
+                            if (checkVictory(O)) {
+                                displayVictoryMessage(O);
                                 resetGame();
                                 return;
                             }
-                            else if (moves[0] == -2 && moves[1] == -2){
-                                System.out.println("PLAYER WON!");
+                            if (MainActivity.AIType == 0) {
+                                int moves[] = astar(state);
+                                System.out.println("AStar moves: " + moves[0] + ", " + moves[1]);
+                                AIMove(moves[0], moves[1]);
+                                if (checkVictory(X)) {
+                                    displayVictoryMessage(X);
+                                    resetGame();
+                                    return;
+                                }
+                            }
+                            else {
+                                if (slots_occupied == 24)
+                                    AIMove(lastSlot()[0], lastSlot()[1]);
+                                else {
+                                    int moves[] = minimax(state);
+                                    System.out.println("Minimax Moves: " + moves[0] + ", " + moves[1]);
+                                    AIMove(moves[0], moves[1]);
+                                }
+                                if (checkVictory(X)) {
+                                    displayVictoryMessage(X);
+                                    resetGame();
+                                    return;
+                                }
+                            }
+                            System.out.println("slots occupied" + slots_occupied);
+                            if (boardIsFull()){
+                                displayVictoryMessage(TIE);
                                 resetGame();
                                 return;
                             }
-                            else if (moves[0] == -3 && moves[1] == -3){
-                                System.out.println("IT'S A TIE!");
-                                resetGame();
-                                return;
-                            }
-                            System.out.println("AI Moves: " + moves[0] + ", " + moves[1]);
-                            AIMove(moves[0], moves[1]);
-                            /*
-                            if (MainActivity.AIType == 0)
-                                dummyAstar();
-                            else
-                                dummyMinimax();
-                                */
                         }
                     }
                 }
             });
         }
+    }
+
+
+
+    private void displayVictoryMessage(int victor){
+        //0 is tie
+        //1 is AI
+        //2 is player
+        View v = findViewById(R.id.gameOverWindow);
+        v.setVisibility(View.VISIBLE);
+        TextView tv = (TextView) findViewById(R.id.gameOverMessage);
+        switch (victor){
+            case 0:
+                tv.setText("Tie!");
+                break;
+            case 1:
+                tv.setText("You lost!");
+                break;
+            case 2:
+                tv.setText("You won!");
+                break;
+            default:
+                break;
+
+        }
+        gameIsActive = false;
     }
 
     private void resetGame(){
@@ -108,6 +174,7 @@ public class Board extends Activity{
             for (int i = 0; i < 25; i++) {
                 ((ImageView) grid.getChildAt(i)).setImageDrawable(null);
             }
+            slots_occupied = 0;
             makeFirstMove();
             printState();
         }
@@ -118,6 +185,7 @@ public class Board extends Activity{
             @Override
             public void onClick(View v) {
                 resetGame();
+                gameIsActive = true;
             }
         });
     }
@@ -151,16 +219,31 @@ public class Board extends Activity{
         });
     }
 
+    private void setUpGameOverListener(){
+        Button b = (Button) findViewById(R.id.gameOverButton);
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                (findViewById(R.id.gameOverWindow)).setVisibility(View.INVISIBLE);
+                gameIsActive = true;
+                resetGame();
+            }
+        });
+    }
+
     private void AIMove(int rowIndex, int colIndex){
         if (state[rowIndex][colIndex] == 0) {
             ImageView img = (ImageView) grid.getChildAt(rowIndex * 5 + colIndex);
             img.setImageResource(R.drawable.x);
             state[rowIndex][colIndex] = 1;
             playerTurn = true;
+            ((TextView) findViewById(R.id.gameTitle)).setText("Make your move.");
+            slots_occupied++;
             return;
         }
         System.out.println("AI failed to make move at " + rowIndex + ", " + colIndex);
         printState();
+        ((TextView) findViewById(R.id.gameTitle)).setText("ERROR");
     }
 
     private void makeFirstMove(){
@@ -235,6 +318,32 @@ public class Board extends Activity{
                 AIMove(4,0);
                 break;
         }
+    }
+
+    public boolean checkVictory(int player){
+        boolean rows[] = new boolean[5];
+        for (int i = 0; i < 5; i++){
+            rows[i] = state[i][0] == player && state[i][1] == player
+                    && state[i][2] == player && state[i][3] == player
+                    && state[i][4] == player;
+            if (rows[i]) return true;
+        }
+        boolean cols[] = new boolean[5];
+        for (int j = 0; j < 5; j++){
+            cols[j] = state[0][j] == player && state[1][j] == player
+                    && state[2][j] == player && state[3][j] == player
+                    && state[4][j] == player;
+            if (cols[j]) return true;
+        }
+        boolean diag1 = state[0][0] == player && state[1][1] == player
+                && state[2][2] == player && state[3][3] == player
+                && state[4][4] == player;
+        if (diag1) return true;
+        boolean diag2 = state[0][4] == player && state[1][3] == player
+                && state[2][2] == player && state[3][1] == player
+                && state[4][0] == player;
+        if (diag2) return true;
+        return false;
     }
 
 }

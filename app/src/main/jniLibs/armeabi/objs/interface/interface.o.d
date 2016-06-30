@@ -104,7 +104,7 @@ obj/local/armeabi/objs/interface/interface.o: jni/interface.cpp \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_num_get.c \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/iomanip \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_iomanip.h \
- jni/timer.h \
+ jni/timer.h jni/Astar.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/string \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_string_hash.h \
  C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_hash_fun.h \
@@ -322,6 +322,8 @@ C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-st
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/stl/_iomanip.h:
 
 jni/timer.h:
+
+jni/Astar.h:
 
 C:/Users/PASTACORK/AppData/Local/Android/sdk/ndk-bundle/build//../sources/cxx-stl/stlport/stlport/string:
 

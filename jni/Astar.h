@@ -10,9 +10,9 @@
 #include <vector>
 #include <stdlib.h>
 #include <ctime>
-#include <chrono>
+//#include <chrono>
 using namespace std;
-using namespace std::chrono;
+//using namespace std::chrono;
 
 // prints board in a manner that is easy to read
 void print_board(int b[][5]);

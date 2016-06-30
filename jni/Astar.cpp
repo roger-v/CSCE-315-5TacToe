@@ -1,4 +1,4 @@
-#include "project3copy.h"
+#include "Astar.h"
 /*
 // prints board in a manner that is easy to read
 void print_board(int b[][5])
@@ -214,7 +214,7 @@ void check_aggressive_cr(int orow, int xc, int values[][5], int b[][5])
 //selects the coordinate pair of the most optimal move
 pair<int, int> coordinates(int val[][5], int b[][5])
 {
-	vector<pair<int, int>>moves;
+	vector<pair<int, int> >moves;
 	int best_move = 0;
 
 	for (int i = 0; i < 5; ++i)								//find the best posible 
@@ -240,12 +240,11 @@ pair<int, int> coordinates(int val[][5], int b[][5])
 }
 
 //main interface for the AI, conducts all the searches 
-vector<int> a_star(int b[][5], int diff)
+vector<int> a_star(int b[][5])
 {
-	high_resolution_clock::time_point t1 = high_resolution_clock::now();
+	//high_resolution_clock::time_point t1 = high_resolution_clock::now();
 	int values[5][5] = { { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 },
 	{ 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 }, { 0, 0, 0, 0, 0 } };
-
 	int x = 0;
 	int o = 0;
 
@@ -262,10 +261,10 @@ vector<int> a_star(int b[][5], int diff)
 	ai_move.push_back(play.first);
 	ai_move.push_back(play.second);
 
-	high_resolution_clock::time_point t2 = high_resolution_clock::now();
+	//high_resolution_clock::time_point t2 = high_resolution_clock::now();
 	
-	auto duration = duration_cast<microseconds>(t2 - t1).count();
-	cerr << "Total time: " << duration<<" microsec"<<endl;
+	//auto duration = duration_cast<microseconds>(t2 - t1).count();
+	//cerr << "Total time: " << duration<<" microsec"<<endl;
 	return ai_move;
 }
 

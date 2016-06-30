@@ -259,21 +259,9 @@ vector<int> performMove(BOARD& board){
 	//printf("score: %d\n", bestmove.score);
 	int check = checkVictory(board);
 	if(check == 1 || check == 2 || check == -1){
-	    if (check == 1){
-	        v.push_back(-1);
-	        v.push_back(-1);
-	        return v;
-	    }
-	    if (check == 2){
-            v.push_back(-2);
-            v.push_back(-2);
-            return v;
-		}
-		if (check == -1){
-		    v.push_back(-3);
-		    v.push_back(-3);
-		    return v;
-		}
+        v.push_back(-1);
+        v.push_back(-1);
+        return v;
 	}
 	else{
 		board.boardM[bestmove.x][bestmove.y] = _aiPlayer;
