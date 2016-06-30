@@ -59,9 +59,9 @@ bool pruneWorstMove(AiMove newAiMove);
 
 AiMove pruning(int player, AiMove move);
 
-AiMove checkBestMovePrune();
+AiMove checkBestMovePrune(BOARD board);
 
-bool loopAction();
+bool loopAction(BOARD& board, int player ,MOVE_LIST& moves, int x, int y, int depth);
 
 int checkVictory(BOARD board);
 

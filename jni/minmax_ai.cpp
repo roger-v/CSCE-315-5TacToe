@@ -53,7 +53,7 @@ AiMove pruning(int player, AiMove move){
 
 }
 
-AiMove checkBestMovePrune(){
+AiMove checkBestMovePrune(BOARD board){
 	AiMove bestmove;
 	int max = abs (maxTracker.score);
 	int min = abs (minTracker.score);
@@ -64,10 +64,18 @@ AiMove checkBestMovePrune(){
 		bestmove = minTracker;
 	}
 	else{
-		return minTracker;
+		int minx = minTracker.x;
+		int miny = minTracker.y;
+		if(board.boardM[minx][miny] == 0){
+			return minTracker;
+		}
+		else{
+			return maxTracker;
+		}
 	}
 	return bestmove;
 }
+
 
 bool loopAction(BOARD& board, int player ,MOVE_LIST& moves, int x, int y, int depth){
 	//make move to test
@@ -79,7 +87,7 @@ bool loopAction(BOARD& board, int player ,MOVE_LIST& moves, int x, int y, int de
 		board.setPlay(x,y,player);
 		int guess = 0;
 		int win = checkVictory(board);
-		if(win == _aiPlayer)  guess = 10;	
+		if(win == _aiPlayer)  guess = 10;
 		else if(win == _user) guess = -10;
 		else if(win == -1) guess = 0;
 		newMove.guessScore = guess;
@@ -188,7 +196,7 @@ void v0_recurse(BOARD& board, MOVE_LIST& moves, int player,int depth){
 					//printf("depth at breakv0: %d\n", depth);
 					break;
 				}
-			}else continue;	
+			}else continue;
 		}
 	}
 }
@@ -202,7 +210,7 @@ void v1_recurse(BOARD& board, MOVE_LIST& moves, int player,int depth){
 					//printf("depth at breakv0: %d\n", depth);
 					break;
 				}
-			}else continue;	
+			}else continue;
 		}
 	}
 }
@@ -213,7 +221,7 @@ void v1_recurse(BOARD& board, MOVE_LIST& moves, int player,int depth){
 AiMove AiPlayerMove(BOARD& board, int player, int depth){
 	srand (time(NULL));
 	int win = checkVictory(board);
-	if(win == _aiPlayer) return AiMove(10);	
+	if(win == _aiPlayer) return AiMove(10);
 	else if(win == _user) return AiMove(-10);
 	else if(win == -1) return AiMove(0);
 
@@ -231,16 +239,17 @@ AiMove AiPlayerMove(BOARD& board, int player, int depth){
 				v1_recurse(board, moves, player, depth);
 		}
 
-		AiMove bMove = checkBestMovePrune();
+		AiMove bMove = checkBestMovePrune(board);
 		return bMove;
-	}	
-	
+	}
+
 	//return maxTracker;
-	AiMove bMove = checkBestMovePrune();
+	AiMove bMove = checkBestMovePrune(board);
 	return bMove;
 }
 
 vector<int> performMove(BOARD& board){
+    vector<int> v;
 	timer.start();
 	//printf("AI thinking...\n");
 	maxTracker.score = -1000000;
@@ -250,7 +259,21 @@ vector<int> performMove(BOARD& board){
 	//printf("score: %d\n", bestmove.score);
 	int check = checkVictory(board);
 	if(check == 1 || check == 2 || check == -1){
-		//printf("PLAYER %d WON! \n",check);
+	    if (check == 1){
+	        v.push_back(-1);
+	        v.push_back(-1);
+	        return v;
+	    }
+	    if (check == 2){
+            v.push_back(-2);
+            v.push_back(-2);
+            return v;
+		}
+		if (check == -1){
+		    v.push_back(-3);
+		    v.push_back(-3);
+		    return v;
+		}
 	}
 	else{
 		board.boardM[bestmove.x][bestmove.y] = _aiPlayer;
@@ -260,7 +283,6 @@ vector<int> performMove(BOARD& board){
 	//printf("Time: %d\n",crtime);
 	timer.reset();
 	//print_board(board.boardM);
-	vector<int> v;
 	v.push_back(bestmove.x);
 	v.push_back(bestmove.y);
 	return v;

@@ -71,7 +71,22 @@ public class Board extends Activity{
                             state[rowIndex][colIndex] = 2;
                             playerTurn = false;
                             int moves[] = minimax(state);
-                            System.out.println("moves: " + moves[0] + ", " + moves[1]);
+                            if (moves[0] == -1 && moves[1] == -1){
+                                System.out.println("AI WON!");
+                                resetGame();
+                                return;
+                            }
+                            else if (moves[0] == -2 && moves[1] == -2){
+                                System.out.println("PLAYER WON!");
+                                resetGame();
+                                return;
+                            }
+                            else if (moves[0] == -3 && moves[1] == -3){
+                                System.out.println("IT'S A TIE!");
+                                resetGame();
+                                return;
+                            }
+                            System.out.println("AI Moves: " + moves[0] + ", " + moves[1]);
                             AIMove(moves[0], moves[1]);
                             /*
                             if (MainActivity.AIType == 0)
@@ -86,18 +101,22 @@ public class Board extends Activity{
         }
     }
 
+    private void resetGame(){
+        if (gameIsActive) {
+            state = new int[5][5];
+            for (int i = 0; i < 25; i++) {
+                ((ImageView) grid.getChildAt(i)).setImageDrawable(null);
+            }
+            makeFirstMove();
+            printState();
+        }
+    }
+
     private void setUpResetListener(){
         findViewById(R.id.reset).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (gameIsActive) {
-                    state = new int[5][5];
-                    for (int i = 0; i < 25; i++) {
-                        ((ImageView) grid.getChildAt(i)).setImageDrawable(null);
-                    }
-                    makeFirstMove();
-                    printState();
-                }
+                resetGame();
             }
         });
     }
