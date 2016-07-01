@@ -95,7 +95,6 @@ public class Board extends Activity{
                         int rowIndex = Character.getNumericValue(name.charAt(1));
                         int colIndex = Character.getNumericValue(name.charAt(2));
                         if (playerTurn && state[rowIndex][colIndex] == 0) {
-                            System.out.println("Player making move at " + rowIndex + ", " + colIndex);
                             ((ImageView) view).setImageResource(R.drawable.o);
                             state[rowIndex][colIndex] = 2;
                             playerTurn = false;
@@ -107,7 +106,6 @@ public class Board extends Activity{
                             }
                             if (MainActivity.AIType == 0) {
                                 int moves[] = astar(state);
-                                System.out.println("AStar moves: " + moves[0] + ", " + moves[1]);
                                 AIMove(moves[0], moves[1]);
                                 if (checkVictory(X)) {
                                     displayVictoryMessage(X);
@@ -120,7 +118,6 @@ public class Board extends Activity{
                                     AIMove(lastSlot()[0], lastSlot()[1]);
                                 else {
                                     int moves[] = minimax(state);
-                                    System.out.println("Minimax Moves: " + moves[0] + ", " + moves[1]);
                                     AIMove(moves[0], moves[1]);
                                 }
                                 if (checkVictory(X)) {
@@ -129,7 +126,6 @@ public class Board extends Activity{
                                     return;
                                 }
                             }
-                            System.out.println("slots occupied" + slots_occupied);
                             if (boardIsFull()){
                                 displayVictoryMessage(TIE);
                                 resetGame();
@@ -142,12 +138,8 @@ public class Board extends Activity{
         }
     }
 
-
-
     private void displayVictoryMessage(int victor){
-        //0 is tie
-        //1 is AI
-        //2 is player
+        //0 is tie, 1 is AI, 2 is player
         View v = findViewById(R.id.gameOverWindow);
         v.setVisibility(View.VISIBLE);
         TextView tv = (TextView) findViewById(R.id.gameOverMessage);
@@ -159,7 +151,8 @@ public class Board extends Activity{
                 tv.setText("You lost!");
                 break;
             case 2:
-                tv.setText("You won!");
+                tv.setVisibility(View.GONE);
+                findViewById(R.id.daugherity).setVisibility(View.VISIBLE);
                 break;
             default:
                 break;
@@ -224,7 +217,9 @@ public class Board extends Activity{
         b.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                (findViewById(R.id.gameOverWindow)).setVisibility(View.INVISIBLE);
+                findViewById(R.id.gameOverWindow).setVisibility(View.INVISIBLE);
+                findViewById(R.id.gameOverMessage).setVisibility(View.VISIBLE);
+                findViewById(R.id.daugherity).setVisibility(View.GONE);
                 gameIsActive = true;
                 resetGame();
             }
@@ -237,7 +232,6 @@ public class Board extends Activity{
             img.setImageResource(R.drawable.x);
             state[rowIndex][colIndex] = 1;
             playerTurn = true;
-            ((TextView) findViewById(R.id.gameTitle)).setText("Make your move.");
             slots_occupied++;
             return;
         }
@@ -262,28 +256,6 @@ public class Board extends Activity{
         Random rand = new Random();
         int randomNum = rand.nextInt((max - min) + 1) + min;
         return randomNum;
-    }
-
-    private void dummyAstar(){
-        System.out.println("dummy A star");
-        int rowIndex = randInt(0, 4);
-        int colIndex = randInt(0, 4);
-        while (state[rowIndex][colIndex] != 0){
-            rowIndex = randInt(0, 4);
-            colIndex = randInt(0, 4);
-        }
-        AIMove(rowIndex, colIndex);
-    }
-
-    private void dummyMinimax(){
-        System.out.println("dummy Minimax");
-        int rowIndex = randInt(0, 4);
-        int colIndex = randInt(0, 4);
-        while (state[rowIndex][colIndex] != 0){
-            rowIndex = randInt(0, 4);
-            colIndex = randInt(0, 4);
-        }
-        AIMove(rowIndex, colIndex);
     }
 
     private void randomSide(int randomNumber){

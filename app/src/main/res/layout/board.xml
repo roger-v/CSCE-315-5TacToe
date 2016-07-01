@@ -367,6 +367,13 @@
             android:textIsSelectable="false"
             android:id="@+id/gameOverMessage" />
 
+        <ImageView
+            android:layout_width="300dp"
+            android:layout_height="300dp"
+            android:id="@+id/daugherity"
+            android:src="@drawable/daugherity"
+            android:visibility="gone" />
+
         <LinearLayout
             android:orientation="horizontal"
             android:layout_width="wrap_content"
@@ -383,5 +390,6 @@
                 android:layout_margin="10dp" />
 
         </LinearLayout>
+
     </LinearLayout>
 </RelativeLayout>

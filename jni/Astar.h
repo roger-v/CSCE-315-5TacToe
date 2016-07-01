@@ -38,6 +38,8 @@ void check_aggressive_rc(int oc, int xr, int values[][5], int b[][5]);
 //checks for aggressive blocks where o is in a row and x is in a column
 void check_aggressive_cr(int orow, int xc, int values[][5], int b[][5]);
 
+pair<int,int> coor_tie_game(int b[][5]);
+
 //selects the coordinate pair of the most optimal move
 pair<int, int> coordinates(int val[][5], int b[][5]);
 
