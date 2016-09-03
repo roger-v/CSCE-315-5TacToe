@@ -10,3 +10,5 @@ The second AI uses A* search to make the next move based on the player's previou
 https://en.wikipedia.org/wiki/A*_search_algorithm. This algorithm was written by Grayson Eiland.
 
 I wrote all of the Android code and I interfaced C++ to Java using the Java Native Interface (JNI) and the Native Development Kit (NDK).
+
+This project was completed long before the deadline as our group was very clear and specific with each other about how each of our tasks would connect.
